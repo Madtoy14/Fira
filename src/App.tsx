@@ -940,22 +940,25 @@ function Stage5() {
 export default function App() {
   const [currentStage, setCurrentStage] = useState(1);
   const [playMusic, setPlayMusic] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (playMusic && audioRef.current) {
+      // Mengatur volume agar lembut (50%) dan memutar musiknya
+      audioRef.current.volume = 0.6;
+      audioRef.current.play().catch(err => console.log("Autoplay dicegah oleh browser:", err));
+    }
+  }, [playMusic]);
 
   return (
     <div className="w-full h-screen overflow-hidden bg-black font-sans">
-      {playMusic && (
-        <iframe
-          width="1"
-          height="1"
-          src="https://www.youtube.com/embed/tGv7CUutzqU?si=vtdVqa6XAIppjxfY&autoplay=1&loop=1&playlist=tGv7CUutzqU"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-          style={{ position: 'absolute', top: '-9999px', left: '-9999px', opacity: 0, pointerEvents: 'none' }}
-        ></iframe>
-      )}
+      {/* Audio tag native, lebih kebal terhadap blokir browser HP */}
+      <audio 
+        ref={audioRef} 
+        src={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/fira-assets/bgm.mp3`} 
+        loop 
+        preload="auto" 
+      />
 
       <AnimatePresence mode="wait">
         {currentStage === 1 && (
