@@ -875,13 +875,15 @@ function Stage5() {
         <Stars radius={100} depth={50} count={600} factor={4} saturation={0} fade speed={2} />
 
         {/* 3. FLOATING TEXT */}
-        <Html position={[0, 3.5, 0]} center transform sprite distanceFactor={12} zIndexRange={[100, 0]}>
-          <div className="pointer-events-none select-none">
-            <h1 className="text-4xl md:text-5xl font-serif text-pink-300 drop-shadow-[0_0_15px_#ff1493] whitespace-nowrap italic">
-              For My Beloved Fira
-            </h1>
-          </div>
-        </Html>
+        {!selectedPhoto && (
+          <Html position={[0, 3.5, 0]} center transform sprite distanceFactor={12} zIndexRange={[100, 0]}>
+            <div className="pointer-events-none select-none">
+              <h1 className="text-4xl md:text-5xl font-serif text-pink-300 drop-shadow-[0_0_15px_#ff1493] whitespace-nowrap italic">
+                For My Beloved Fira
+              </h1>
+            </div>
+          </Html>
+        )}
 
         <Suspense fallback={null}>
           <Stage5PlanetGroup onPhotoClick={(src, messages) => setSelectedPhoto({ src, messages })} onLoaded={() => setIsReady(true)} />
