@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo, Suspense } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
-import { Play, ChevronRight, X, Heart, Music2, Sparkles, Stars as LucideStars, Gift, HeartCrack, Lock, Cloud, Moon, Key } from 'lucide-react';
+import { Play, ChevronRight, X, Heart, Sparkles, Stars as LucideStars, Gift, HeartCrack } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Stars, OrbitControls, Billboard, Image as DreiImage, Html } from '@react-three/drei';
 import * as THREE from 'three';
