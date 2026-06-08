@@ -955,11 +955,11 @@ export default function App() {
   return (
     <div className="w-full h-screen overflow-hidden bg-black font-sans">
       {/* Audio tag native, lebih kebal terhadap blokir browser HP */}
-      <audio 
-        ref={audioRef} 
-        src={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/fira-assets/bgm.mp3`} 
-        loop 
-        preload="auto" 
+      <audio
+        ref={audioRef}
+        src={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/fira-assets/bgm.mp3`}
+        loop
+        preload="auto"
       />
 
       <AnimatePresence mode="wait">
