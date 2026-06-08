@@ -303,7 +303,7 @@ function Stage3({ onComplete, onPlay }: { onComplete: () => void, onPlay: () => 
           ))}
           {/* Center label */}
           <div className="w-20 h-20 rounded-full flex items-center justify-center z-10 shadow-[0_0_15px_rgba(0,0,0,0.5)] overflow-hidden border-2 border-gray-700 bg-gray-900">
-            <img src="/vinyl-center.jpg" alt="Vinyl Center" className="w-full h-full object-cover" />
+            <img src={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/fira-assets/vinyl-center.jpg`} alt="Vinyl Center" className="w-full h-full object-cover" />
           </div>
         </motion.div>
       </div>
@@ -367,8 +367,9 @@ const UCAPAN_LIST = [
 ];
 
 const PHOTOS = Array.from({ length: 85 }).map((_, i) => {
-  // Ambil gambar secara berurutan dari folder public/shafira/1.png sampai 85.png
-  const src = `/shafira/${i + 1}.png`;
+  // Mengambil gambar langsung dari Supabase Storage (CDN) agar aplikasi lebih ringan
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+  const src = `${supabaseUrl}/storage/v1/object/public/fira-assets/shafira/${i + 1}.png`;
 
   // Pick 1 random unique message
   const shuffled = [...UCAPAN_LIST].sort(() => 0.5 - Math.random());
